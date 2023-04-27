@@ -1,4 +1,4 @@
-
+ 
 import argparse
 import sys
 import time
@@ -60,7 +60,7 @@ def run(model: str, camera_id: int, width: int, height: int, num_threads: int,
     counter += 1
     image = cv2.flip(image, 1)
     
-    image = cv2.resize(image, (320, 240)) # added for improved fps
+   # image = cv2.resize(image, (320, 240)) # added for improved fps
 
 
     # Convert the image from BGR to RGB 
@@ -74,6 +74,7 @@ def run(model: str, camera_id: int, width: int, height: int, num_threads: int,
     if len(detection_result.detections) > 0:
       category_name = detection_result.detections[0].categories[0].category_name
       score = detection_result.detections[0].categories[0].score
+      
       print(f"Detected: {category_name}, Score: {score:.2f}")
 
 
@@ -95,6 +96,9 @@ def run(model: str, camera_id: int, width: int, height: int, num_threads: int,
     # Stop the program if the ESC key is pressed.
     if cv2.waitKey(1) == 27:
       break
+        # Save the image to the desktop every 5 seconds
+    if counter % 3 == 0: # 5 frames = 5 seconds assuming 5 FPS
+        cv2.imwrite('/home/user/Desktop/pictures/frame_{}.jpg'.format(counter), image)
     cv2.imshow('object_detector', image)
 
   cap.release()
