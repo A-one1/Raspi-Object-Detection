@@ -7,6 +7,11 @@ preview (when the object score is above a given threshold).
 
 At the end of this page, there are extra steps to accelerate the example using
 the Coral USB Accelerator to increase inference speed.
+##AFTER EVERYTHING IS COMPLETE USE THESE COMMANDS TO RUN THE PROGRAM
+    source tflite-env/bin/activate
+    cd examples/lite/examples/object_detection/raspberry_pi
+    python3 detect.py 
+
 
 ## Set up your hardware
 
